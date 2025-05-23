@@ -1,7 +1,12 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import AuthForm from './components/AuthForm';
-import SilentContributorDashboard from './components/SilentContributorDashboard';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import AuthForm from "./components/AuthForm";
+import SilentContributorDashboard from "./components/SilentContributorDashboard";
+import "./App.css";
 
 function App() {
   // In a real implementation, this would check for authentication
@@ -11,15 +16,22 @@ function App() {
     <Router>
       <Routes>
         <Route path="/auth" element={<AuthForm />} />
-        <Route 
-          path="/dashboard" 
+        <Route
+          path="/dashboard"
           element={
-            isAuthenticated ? 
-              <SilentContributorDashboard /> : 
+            isAuthenticated ? (
+              <SilentContributorDashboard />
+            ) : (
               <Navigate to="/auth" replace />
-          } 
+            )
+          }
         />
-        <Route path="/" element={<Navigate to={isAuthenticated ? "/dashboard" : "/auth"} replace />} />
+        <Route
+          path="/"
+          element={
+            <Navigate to={isAuthenticated ? "/dashboard" : "/auth"} replace />
+          }
+        />
       </Routes>
     </Router>
   );
